@@ -8,6 +8,7 @@ RUN mvn clean package -DskipTests
 # Step 2: Use a clean Java environment to run the built app
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/learning-race-0.0.1-SNAPSHOT.jar app.jar
+# This wild card ensures Docker finds your jar file no matter what it is named
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
