@@ -3994,3 +3994,138 @@ body {
 .teacher-create-wrapper .cyber-create-btn:active {
     transform: translateY(0);
 }
+/* Global scroll fix for mobile + desktop */
+html,
+body,
+#root {
+    min-height: 100%;
+    height: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* Fix pages that are accidentally locked to screen height */
+.dashboard-container,
+.teacher-results-page-bg,
+.student-join-page,
+.teacher-login-page,
+.home-page,
+.join-page,
+.lobby-page {
+    min-height: 100dvh !important;
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Mobile browser height fix: better than 100vh on Android/iPhone */
+@supports (height: 100dvh) {
+    .dashboard-container,
+    .teacher-results-page-bg,
+    .student-join-page,
+    .teacher-login-page,
+    .home-page,
+    .join-page,
+    .lobby-page {
+        min-height: 100dvh !important;
+    }
+}
+
+/* Allow inner content areas to scroll if they overflow */
+.tr-content-wrapper,
+.t-lobby-container,
+.join-card,
+.cyber-login-card,
+.tr-table-wrapper,
+.t-results-table-container {
+    max-height: none !important;
+    overflow-y: auto !important;
+}
+
+/* Prevent fixed full-screen overlays from blocking scroll unless intentionally shown */
+.overlay-blur {
+    overflow-y: auto !important;
+}
+
+/* Mobile-specific spacing so content can scroll naturally */
+@media (max-width: 768px) {
+    body {
+        position: static !important;
+        touch-action: pan-y !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .dashboard-container,
+    .teacher-results-page-bg,
+    .student-join-page,
+    .teacher-login-page,
+    .home-page,
+    .join-page,
+    .lobby-page {
+        padding-bottom: 2rem !important;
+    }
+
+    .tr-content-wrapper {
+        overflow-y: visible !important;
+    }
+
+    .tr-table-wrapper,
+    .t-results-table-container {
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+    }
+}
+/* Final page scroll policy */
+
+/* Default: allow page scroll where content can overflow */
+.dashboard-container,
+.teacher-results-page-bg,
+.t-lobby-page-container,
+.teacher-login-page,
+.teacher-create-wrapper,
+.results-page-container,
+.tr-content-wrapper,
+.t-results-content {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Keep student join page locked/fitted with no scroll */
+.student-join-page,
+.join-page-container.student-join-page {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+}
+
+/* Make the student join card fit inside the screen */
+.student-join-page .join-card {
+    max-height: calc(100dvh - 5rem) !important;
+    overflow: hidden !important;
+}
+
+/* Back button on student join page */
+.student-join-back-btn {
+    position: absolute;
+    top: clamp(0.75rem, 2vh, 1.25rem);
+    right: clamp(0.75rem, 2vw, 1.25rem);
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    font-family: var(--font-main);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+}
+
+.student-join-back-btn:hover {
+    background: rgba(0, 243, 255, 0.12);
+    color: white;
+}

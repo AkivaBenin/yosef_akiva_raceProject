@@ -11,9 +11,9 @@ import { ROUTES } from '../config/routePaths';
 const PodiumItem = ({ place, data, leaderboard }) => {
   if (!data) return null;
   const colors = {
-    1: 'var(--neon-orange)', 
-    2: 'var(--neon-purple)', 
-    3: 'var(--neon-orange)' 
+    1: 'var(--neon-orange)',
+    2: 'var(--neon-purple)',
+    3: 'var(--neon-orange)'
   };
   const color = colors[place] || 'var(--neon-blue)';
   const width = place === 1 ? 'clamp(150px, 18vw, 200px)' : 'clamp(130px, 15vw, 170px)';
@@ -66,11 +66,11 @@ const TeacherResultsPage = () => {
   const third = sortedLeaderboard[2];
 
   return (
-    <div className="dashboard-container teacher-results-page-bg" style={{ direction: 'rtl', overflow: 'hidden' }}>
-      
-      {/* TOP HEADER */}
-      <div className="dashboard-header" style={{ position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.8)' }}>
-        
+      <div className="dashboard-container teacher-results-page-bg"
+           style={{direction: 'rtl', overflowY: 'auto', overflowX: 'hidden'}}>
+          {/* TOP HEADER */}
+          <div className="dashboard-header" style={{ position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.8)' }}>
+
         {/* Right Action (Back to lobby equivalent) */}
         <div className="dashboard-actions">
           <button onClick={() => navigate(ROUTES.TEACHER_CREATE_RACE)} className="btn-stop-race" style={{ borderColor: 'var(--neon-blue)', background: 'rgba(0,150,255,0.1)', boxShadow: '0 0 20px rgba(0,150,255,0.3)' }}>
@@ -91,22 +91,22 @@ const TeacherResultsPage = () => {
           </h1>
           <div className="join-subtitle" style={{ fontSize: '0.9rem', marginTop: '2px' }}>מרוץ חשבון חווייתי בזמן אמת</div>
         </div>
-        
+
         {/* Left Spacer */}
         <div style={{ width: '150px' }}></div>
       </div>
 
       <div className="tr-content-wrapper">
-        
+
         {/* Left Column: Podium & Table */}
         <div className="tr-left-column">
-          
+
           <div className="tr-winners-section">
             <div className="tr-podium-header hebrew-text">
               <h1><span style={{color: 'gold', filter: 'drop-shadow(0 0 5px gold)'}}>🏆</span> המרוץ הסתיים! <span style={{color: 'gold', filter: 'drop-shadow(0 0 5px gold)'}}>🏆</span></h1>
               {results.winner && <p>כל הכבוד למנצחים!</p>}
             </div>
-            
+
             <div className="tr-podium-container">
               {second && <PodiumItem place={2} data={second} leaderboard={results.leaderboard} />}
               {first && <PodiumItem place={1} data={first} leaderboard={results.leaderboard} />}
